@@ -17,9 +17,6 @@ class QLearner(object):
 		if dyna > 0:
 			self.model = dict() 
 
-	def set_discretizer(self, disc):
-		self.disc = disc
-	
 	def query(self,s,opt=False):
 		self.eps = self.decay(self.eps)
 		if np.random.random() < self.eps and not opt:
@@ -65,7 +62,6 @@ class QLearner(object):
 				samples = len(self.model.keys())
 			for xp in random.sample(self.model.keys(),samples):
 				self.dyna_update(xp,self.model[xp])
-
 
 	def dyna_update(self,xp,xp_tuple):
 		alpha = self.alpha
